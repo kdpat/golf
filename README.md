@@ -13,12 +13,16 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 
 The goal of the game is to get the lowest score possible.
 At the start of a round, each player flips two cards.
-After everyone has flipped, the host user goes first.
+After everyone has flipped two cards, the host user goes first.
+Each turn, a player takes from either the deck or pile of table cards.
+They can either return the card or swap it with another card in their hand.
+When two cards in a column match, they are both worth zero points.
 Once a player has flipped all their cards, every other player has one remaining turn.
-After this turn, all every player's cards will be flipped over.
+After the final turn, every player's cards will be flipped over.
+
+![Two player game](golf-screenshot.png)
 
 ## Thanks
-- Card images from https://screamingbrainstudios.itch.io/poker-pack
+- Card images from www.me.uk/cards/
 - Casino sounds by Kenney Vleugels (www.kenney.nl)
 - Other sounds from zapsplat (www.zapsplat.com)
-- www.me.uk/cards/
