@@ -9,6 +9,12 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
 
+## URL
+
+The game can be played at [golf.fly.dev](https://golf.fly.dev/)
+
+![Two player game](golf-screenshot.png)
+
 ## Game rules
 
 The goal of the game is to get the lowest score possible.
@@ -19,8 +25,6 @@ They can either return the card or swap it with another card in their hand.
 When two cards in a column match, they are both worth zero points.
 Once a player has flipped all their cards, every other player has one remaining turn.
 After the final turn, every player's cards will be flipped over.
-
-![Two player game](golf-screenshot.png)
 
 ## Thanks
 - Card images from www.me.uk/cards/
