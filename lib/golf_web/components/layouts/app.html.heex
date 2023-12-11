@@ -1,0 +1,73 @@
+<nav class="w-[100vw] h-[1.5rem]">
+  <ul class="h-[1.5rem] flex border-b bg-slate-100 items-center justify-between gap-4 px-4 text-sm">
+    <%= if @current_user do %>
+      <li class="mr-auto text-[0.8125rem] leading-6 text-zinc-900">
+        Logged in as:
+        <span class="font-semibold text-fuchsia-500">
+          <%= @current_user.name %>
+        </span>
+      </li>
+    <% end %>
+    <li>
+      <.link
+        href={~p"/"}
+        class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
+      >
+        Home
+      </.link>
+    </li>
+    <%= if @current_user do %>
+      <li>
+        <.link
+          href={~p"/games"}
+          class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
+        >
+          Games
+        </.link>
+      </li>
+      <li>
+        <.link
+          href={~p"/users/settings"}
+          class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
+        >
+          Settings
+        </.link>
+      </li>
+      <li>
+        <.link
+          href={~p"/users/log_out"}
+          method="delete"
+          class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
+        >
+          Log out
+        </.link>
+      </li>
+    <% else %>
+      <li>
+        <.link
+          href={~p"/users/register"}
+          class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
+        >
+          Register
+        </.link>
+      </li>
+      <li>
+        <.link
+          href={~p"/users/log_in"}
+          class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
+        >
+          Log in
+        </.link>
+      </li>
+    <% end %>
+  </ul>
+</nav>
+<!--
+<main class="px-4 py-4 sm:px-6 lg:px-8">
+-->
+<main class="px-0 py-0">
+  <div class="mx-auto w-full">
+    <.flash_group flash={@flash} />
+    <%= @inner_content %>
+  </div>
+</main>

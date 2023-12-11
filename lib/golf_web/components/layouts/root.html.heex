@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" class="[scrollbar-gutter:stable]">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="csrf-token" content={get_csrf_token()} />
+    <.live_title suffix=" · Golf">
+      <%= assigns[:page_title] || "Golf" %>
+    </.live_title>
+    <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
+    <script defer src="https://pixijs.download/release/pixi.js">
+    </script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"
+    >
+    </script>
+    <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
+    </script>
+  </head>
+  <body class="bg-white antialiased mx-auto scroll-smooth">
+    <%= @inner_content %>
+  </body>
+</html>
