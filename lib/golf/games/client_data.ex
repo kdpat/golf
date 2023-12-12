@@ -53,7 +53,13 @@ defmodule Golf.Games.ClientData do
     players =
       if round && round.player_out &&
            Golf.Games.player_set?(round, game.players, round.player_out_id) do
-        Enum.map(players, fn p -> Golf.Games.double_score_if(p, p.id == player_out.id) end)
+        Enum.map(players, fn p ->
+          if p.id == player_out.id do
+            Map.update!(p, :score, fn n -> if n > 0, do: n * 2, else: n end)
+          else
+            p
+          end
+        end)
       else
         players
       end

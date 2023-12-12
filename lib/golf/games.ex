@@ -536,8 +536,19 @@ defmodule Golf.Games do
       |> Enum.zip_with(colors, fn p, c -> Map.put(p, :color, c) end)
 
     players =
+      # if the player who went out first lost, double their score (if the score is positive)
       if round.state == :round_over && out_index && any_lower_score?(round.hands, out_index) do
-        Enum.map(players, fn p -> double_score_if(p, p.id == player_out.id) end)
+        Enum.map(players, fn p ->
+          if p.id == player_out.id do
+            Map.update!(p, :score, fn n ->
+              if n > 0 do
+                n * 2
+              else
+                n
+              end
+            end)
+          end
+        end)
       else
         players
       end
@@ -568,16 +579,4 @@ defmodule Golf.Games do
       Map.put(p, :score, score(hand))
     end)
   end
-
-  def double_score_if(player, true) do
-    Map.update!(player, :score, fn n ->
-      if n > 0 do
-        n * 2
-      else
-        n
-      end
-    end)
-  end
-
-  def double_score_if(player, _), do: player
 end

@@ -14,7 +14,7 @@ defmodule GolfWeb.GameLive do
     ~H"""
     <div class="w-full h-full flex flex-row ">
       <div class="relative min-w-0 flex-auto h-[calc(100vh-1.5rem)]">
-        <div class="w-full h-full" id="game-canvas" phx-hook="GameCanvas" phx-update="ignore"></div>
+        <div class="" id="game-canvas" phx-hook="GameCanvas" phx-update="ignore"></div>
 
         <div class="absolute top-[90%] left-1/2 translate-x-[-50%] translate-y-[-50%]">
           <.game_button :if={@can_start_game?} phx-click="start-game">
@@ -205,7 +205,7 @@ defmodule GolfWeb.GameLive do
 
     scores = Enum.map(round.hands, &Golf.Games.score/1)
     min_score = Enum.min(scores)
-    min_index = Enum.find_index(scores, & &1 == min_score)
+    min_index = Enum.find_index(scores, &(&1 == min_score))
 
     users =
       game.players
