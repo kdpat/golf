@@ -9,12 +9,19 @@ defmodule GolfWeb.GameLive do
 
   @name_colors ~w(blue fuchsia green zinc)
 
+  # scale-x-[80%] scale-y-[90%] origin-top-left md:transform-none
+
   @impl true
   def render(assigns) do
     ~H"""
-    <div class="w-full h-full flex flex-row ">
-      <div class="relative min-w-0 flex-auto h-[calc(100vh-1.5rem)]">
-        <div class="" id="game-canvas" phx-hook="GameCanvas" phx-update="ignore"></div>
+    <div class="w-full h-full flex flex-row">
+      <div class="relative min-w-0 flex-auto h-[calc(100vh-1.5rem)] min-h-[585px]">
+        <div class="w-full h-full min-w-[250px] min-h-[585px]"
+             id="game-canvas"
+             phx-hook="GameCanvas"
+             phx-update="ignore"
+        >
+        </div>
 
         <div class="absolute top-[90%] left-1/2 translate-x-[-50%] translate-y-[-50%]">
           <.game_button :if={@can_start_game?} phx-click="start-game">
@@ -31,7 +38,7 @@ defmodule GolfWeb.GameLive do
         :if={@game && @show_info?}
         id="game-info"
         class={[
-          "min-w-[40vw] max-h-[calc(100vh-2.5rem)] flex flex-col",
+          "min-w-[40vw] max-h-[calc(100vh-2.5rem)] flex-1 flex-col",
           "px-4 space-y-4 divide-y whitespace-nowrap mb-1"
         ]}
       >
@@ -75,7 +82,6 @@ defmodule GolfWeb.GameLive do
        name_colors: @name_colors,
        user_colors: %{},
        show_info?: true
-       #  chat_messages: []
      )
      |> stream(:chat_messages, [])}
   end
@@ -125,7 +131,6 @@ defmodule GolfWeb.GameLive do
 
     :ok = Golf.subscribe("chat:#{id}")
     {:noreply, stream(socket, :chat_messages, messages, at: 0)}
-    # {:noreply, assign(socket, :chat_messages, messages)}
   end
 
   @impl true
@@ -133,7 +138,6 @@ defmodule GolfWeb.GameLive do
     color = Map.fetch!(socket.assigns.user_colors, message.user_id)
     message = Map.put(message, :color, color)
     {:noreply, stream_insert(socket, :chat_messages, message, at: 0)}
-    # {:noreply, assign(socket, :chat_messages, [message | socket.assigns.chat_messages])}
   end
 
   @impl true

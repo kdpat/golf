@@ -535,6 +535,7 @@ defmodule Golf.Games do
       |> put_raw_scores(round.hands)
       |> Enum.zip_with(colors, fn p, c -> Map.put(p, :color, c) end)
 
+    #TODO cleanup
     players =
       # if the player who went out first lost, double their score (if the score is positive)
       if round.state == :round_over && out_index && any_lower_score?(round.hands, out_index) do
@@ -547,6 +548,8 @@ defmodule Golf.Games do
                 n
               end
             end)
+          else
+            p
           end
         end)
       else

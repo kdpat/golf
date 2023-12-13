@@ -14,9 +14,7 @@ defmodule GolfWeb.LobbyLive do
       <h1 class="leading-8 text-zinc-800 text-center">
         <div>
           <span class="text-lg font-bold">Lobby</span>
-          <span class="text-green-500 text-4xl font-mono font-semibold copyable hover:cursor-pointer hover:underline">
-            <%= @id %>
-          </span>
+          <span class="text-green-500 text-4xl font-mono font-semibold copyable hover:cursor-pointer hover:underline"><%= @id %></span>
         </div>
       </h1>
 
@@ -135,8 +133,8 @@ defmodule GolfWeb.LobbyLive do
       end
 
     color = Enum.at(@name_colors, length(lobby.users) - 1)
-    new_user = Map.put(new_user, :color, color) |> dbg()
-    user_colors = Map.put(socket.assigns.user_colors, new_user.id, color) |> dbg()
+    new_user = Map.put(new_user, :color, color)
+    user_colors = Map.put(socket.assigns.user_colors, new_user.id, color)
 
     {:noreply,
      socket
